@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RestCovidApplication<rest-covid>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.com.fiap.restcovid.RestCovidApplication",
+            "projectName": "rest-covid",
+            "args": ""
+        }
+    ]
+}

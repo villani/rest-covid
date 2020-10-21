@@ -1,8 +1,13 @@
 /home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/controllers/MappingController.java
 /home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/RestCovidApplication.java
-/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/service/AssociateService.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/service/MappingServiceImp.java
 /home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/controllers/AssociateController.java
-/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/repository/AssociateRepository.java
-/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/service/AssociateServiceImp.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/entity/Measure.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/entity/Mapping.java
 /home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/entity/Associate.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/service/MappingService.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/service/AssociateService.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/repository/AssociateRepository.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/repository/MappingRepository.java
+/home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/service/AssociateServiceImp.java
 /home/leonardo/Documentos/Estudos/rest-covid/src/main/java/br/com/fiap/restcovid/controllers/MeasureController.java

@@ -36,9 +36,9 @@ public class MappingServiceImp implements MappingService {
         String response = "";
         if (result.isPresent()) {
             mappingRepository.delete(result.get());
-            response = "The Mapping was deleted.";
+            response = "The mapping was deleted.";
         } else {
-            response = "The Mapping not found.";
+            response = "The mapping not found.";
         }
         return response;
     }

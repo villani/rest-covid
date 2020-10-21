@@ -1,40 +1,50 @@
 package br.com.fiap.restcovid.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import br.com.fiap.restcovid.entity.Measure;
+import br.com.fiap.restcovid.service.MeasureService;
 
 @RestController
 @RequestMapping("measures")
 public class MeasureController {
 
+    @Autowired
+    MeasureService measureService;
+
     @GetMapping
-    public String listAll() {
-        return "Show the list of measures";
+    public @ResponseBody ResponseEntity<?> findAll() {
+        return ResponseEntity.ok().body(measureService.findAll());
     }
 
     @GetMapping("{id}")
-    public String listById(@PathVariable Long id) {
-        return "Show the associete with id " + id;
+    public @ResponseBody ResponseEntity<?> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(measureService.findById(id));
     }
 
     @PostMapping
-    public String create() {
-        return "measure included";
+    public @ResponseBody ResponseEntity<?> create(@RequestBody Measure measure) {
+        return ResponseEntity.ok().body(measureService.saveMeasure(measure));
     }
 
-    @PutMapping("{id}")
-    public String update(@PathVariable Long id) {
-        return "The measure with id " + id + " was updated";
+    @PutMapping
+    public @ResponseBody ResponseEntity<?> update(@RequestBody Measure measure) {
+        return ResponseEntity.ok().body(measureService.saveMeasure(measure));
     }
 
     @DeleteMapping("{id}")
-    public String delete(@PathVariable Long id) {
-        return "The measure with id " + id + " was removed";
+    public @ResponseBody ResponseEntity<?> delete(@PathVariable Long id) {
+        return ResponseEntity.ok().body(measureService.deleteMeasure(id));
     }
     
 }

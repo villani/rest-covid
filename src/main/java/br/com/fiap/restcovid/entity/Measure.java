@@ -2,16 +2,20 @@ package br.com.fiap.restcovid.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 import lombok.Data;
 
-@Table(name = "tbl_associate")
+@Table(name = "tbl_measure")
 @Entity
 @Data
 public class Measure {
@@ -19,59 +23,23 @@ public class Measure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column
-    private String name;
 
     @Column
-    private Date birthday;
+    private Date date;
 
     @Column
-    private String gender;
-
-    @Column(name = "marital_status")
-    private String maritalStatus;   
-
-    @Column(name = "id_manager")
-    private Long idManager;
+    private String measure;
 
     @Column
-    private String occupation;
+    private String responsible;
+
+    @Column(name = "result_observation")
+    private String resultObservation;
 
     @Column
-    private String company;
+    private String status;
 
-    @Column
-    private String store;
-
-    @Column
-    private String phone;
-
-    @Column
-    private String area;
-
-    @Column(name = "remote_work")
-    private String remoteWork;
-
-    @Column
-    private String turn;
-
-    @Column(name = "work_group")
-    private String workGoup;
-
-    @Column
-    private String locality;
-
-    @Column
-    private String address;
-
-    @Column
-    private String city;
-
-    @Column(name = "zip_code")
-    private String zipCode;
-
-    @Column(name = "patient_record")
-    private String patientRecord;
-    
+    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "associate_id")
+    private Associate associate;
 }

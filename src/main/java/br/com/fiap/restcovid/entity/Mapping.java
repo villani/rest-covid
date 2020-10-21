@@ -9,12 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 
-@Table(name = "tbl_associate")
+@Table(name = "tbl_mapping")
 @Entity
 @Data
 public class Mapping {
@@ -23,7 +23,7 @@ public class Mapping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne(cascade = {CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "associate_id")
     private Associate associate;
 

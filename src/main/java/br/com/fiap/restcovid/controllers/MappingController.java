@@ -1,5 +1,6 @@
 package br.com.fiap.restcovid.controllers;
 
+import br.com.fiap.restcovid.dto.CreateMappingDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.restcovid.entity.Mapping;
 import br.com.fiap.restcovid.service.MappingService;
 
 @RestController
@@ -33,13 +33,13 @@ public class MappingController {
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<?> create(@RequestBody Mapping Mapping) {
-        return ResponseEntity.ok().body(mappingService.saveMapping(Mapping));
+    public @ResponseBody ResponseEntity<?> create(@RequestBody CreateMappingDTO createMappingDTO) {
+        return ResponseEntity.ok().body(mappingService.saveMapping(createMappingDTO));
     }
 
-    @PutMapping
-    public @ResponseBody ResponseEntity<?> update(@RequestBody Mapping Mapping) {
-        return ResponseEntity.ok().body(mappingService.saveMapping(Mapping));
+    @PutMapping("{id}")
+    public @ResponseBody ResponseEntity<?> update(@PathVariable("id") Long id,@RequestBody CreateMappingDTO createMappingDTO) {
+        return ResponseEntity.ok().body(mappingService.updateMapping(id,createMappingDTO));
     }
 
     @DeleteMapping("{id}")

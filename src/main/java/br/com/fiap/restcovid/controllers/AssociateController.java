@@ -1,5 +1,7 @@
 package br.com.fiap.restcovid.controllers;
 
+import br.com.fiap.restcovid.service.MappingService;
+import br.com.fiap.restcovid.service.MeasureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +24,12 @@ public class AssociateController {
     @Autowired
     AssociateService associateService;
 
+    @Autowired
+    MappingService mappingService;
+
+    @Autowired
+    MeasureService measureService;
+
     @GetMapping
     public @ResponseBody ResponseEntity<?> findAll() {
         return ResponseEntity.ok().body(associateService.findAll());
@@ -30,6 +38,21 @@ public class AssociateController {
     @GetMapping("{id}")
     public @ResponseBody ResponseEntity<?> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(associateService.findById(id));
+    }
+
+    @GetMapping("name/{name}")
+    public @ResponseBody ResponseEntity<?> findByName(@PathVariable String name){
+        return ResponseEntity.ok().body(associateService.findByName(name));
+    }
+
+    @GetMapping("{id}/mappings")
+    public @ResponseBody ResponseEntity<?> findMappingsByAssociate(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(mappingService.findMappingByAssociate(id));
+    }
+
+    @GetMapping("{id}/measures")
+    public @ResponseBody ResponseEntity<?> findMeasuresByAssociate(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(measureService.findMeasuresByAssociate(id));
     }
 
     @PostMapping

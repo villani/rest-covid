@@ -39,7 +39,7 @@ public class Measure {
     @Column
     private String status;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "associate_id")
     private Associate associate;
 }

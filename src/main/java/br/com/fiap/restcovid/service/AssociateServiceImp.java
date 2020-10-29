@@ -1,5 +1,6 @@
 package br.com.fiap.restcovid.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class AssociateServiceImp implements AssociateService {
         }
         return response;
     }
-    
+
+    @Override
+    public List<Associate> findByName(String name) {
+        return associateRepository.findByNameContaining(name);
+    }
+
 }

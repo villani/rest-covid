@@ -1,12 +1,18 @@
 package br.com.fiap.restcovid.service;
 
+import java.util.List;
 import java.util.Optional;
 
+import br.com.fiap.restcovid.dto.CreateMeasureDTO;
+import br.com.fiap.restcovid.entity.Associate;
+import br.com.fiap.restcovid.repository.AssociateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.restcovid.entity.Measure;
 import br.com.fiap.restcovid.repository.MeasureRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class MeasureServiceImp implements MeasureService {
@@ -14,8 +20,37 @@ public class MeasureServiceImp implements MeasureService {
     @Autowired
     MeasureRepository measureRepository;
 
+    @Autowired
+    AssociateRepository associateRepository;
+
     @Override
-    public Measure saveMeasure(Measure measure) {
+    public Measure saveMeasure(CreateMeasureDTO createMeasureDTO) {
+
+        Associate associate = associateRepository.findById(createMeasureDTO.getIdAssociate())
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        Measure measure = new Measure();
+        measure.setAssociate(associate);
+        measure.setDate(createMeasureDTO.getDate());
+        measure.setMeasure(createMeasureDTO.getMeasure());
+        measure.setResponsible(createMeasureDTO.getResponsible());
+        measure.setResultObservation(createMeasureDTO.getResultObservation());
+
+        return measureRepository.save(measure);
+    }
+
+    @Override
+    public Measure updateMeasure(Long id,CreateMeasureDTO createMeasureDTO) {
+
+        Associate associate = associateRepository.findById(createMeasureDTO.getIdAssociate())
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        Measure measure = measureRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        measure.setAssociate(associate);
+        measure.setDate(createMeasureDTO.getDate());
+        measure.setMeasure(createMeasureDTO.getMeasure());
+        measure.setResponsible(createMeasureDTO.getResponsible());
+        measure.setResultObservation(createMeasureDTO.getResultObservation());
         return measureRepository.save(measure);
     }
 
@@ -42,5 +77,10 @@ public class MeasureServiceImp implements MeasureService {
         }
         return response;
     }
-    
+
+    @Override
+    public List<Measure> findMeasuresByAssociate(Long id) {
+        return measureRepository.findByAssociateId(id);
+    }
+
 }

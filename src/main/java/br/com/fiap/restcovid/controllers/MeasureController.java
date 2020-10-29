@@ -1,5 +1,6 @@
 package br.com.fiap.restcovid.controllers;
 
+import br.com.fiap.restcovid.dto.CreateMeasureDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,13 +34,13 @@ public class MeasureController {
     }
 
     @PostMapping
-    public @ResponseBody ResponseEntity<?> create(@RequestBody Measure measure) {
-        return ResponseEntity.ok().body(measureService.saveMeasure(measure));
+    public @ResponseBody ResponseEntity<?> create(@RequestBody CreateMeasureDTO createMeasureDTO) {
+        return ResponseEntity.ok().body(measureService.saveMeasure(createMeasureDTO));
     }
 
-    @PutMapping
-    public @ResponseBody ResponseEntity<?> update(@RequestBody Measure measure) {
-        return ResponseEntity.ok().body(measureService.saveMeasure(measure));
+    @PutMapping("{id}")
+    public @ResponseBody ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody CreateMeasureDTO createMeasureDTO) {
+        return ResponseEntity.ok().body(measureService.updateMeasure(id,createMeasureDTO));
     }
 
     @DeleteMapping("{id}")

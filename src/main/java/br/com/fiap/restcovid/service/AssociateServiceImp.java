@@ -8,10 +8,12 @@ import br.com.fiap.restcovid.entity.Measure;
 import br.com.fiap.restcovid.repository.MappingRepository;
 import br.com.fiap.restcovid.repository.MeasureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.restcovid.entity.Associate;
 import br.com.fiap.restcovid.repository.AssociateRepository;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.swing.text.html.Option;
 
@@ -30,6 +32,35 @@ public class AssociateServiceImp implements AssociateService {
     @Override
     public Associate saveAssociate(Associate associate) {
         return associateRepository.save(associate);
+    }
+
+    @Override
+    public Associate updateAssociate(Associate associate) {
+
+        Associate associateDB = associateRepository
+                .findById(associate.getId())
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        associateDB.setAddress(associate.getAddress());
+        associateDB.setArea(associate.getArea());
+        associateDB.setBirthday(associate.getBirthday());
+        associateDB.setCity(associate.getCity());
+        associateDB.setCompany(associate.getCompany());
+        associateDB.setGender(associate.getGender());
+        associateDB.setIdManager(associate.getIdManager());
+        associateDB.setLocality(associate.getLocality());
+        associateDB.setMaritalStatus(associate.getMaritalStatus());
+        associateDB.setName(associate.getName());
+        associateDB.setOccupation(associate.getOccupation());
+        associateDB.setPatientRecord(associate.getPatientRecord());
+        associateDB.setPhone(associate.getPhone());
+        associateDB.setRemoteWork(associate.getRemoteWork());
+        associateDB.setStore(associate.getStore());
+        associateDB.setTurn(associate.getTurn());
+        associateDB.setWorkGoup(associate.getWorkGoup());
+        associateDB.setZipCode(associate.getZipCode());
+
+        return associateRepository.save(associateDB);
     }
 
     @Override

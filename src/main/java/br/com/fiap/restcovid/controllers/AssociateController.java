@@ -62,7 +62,7 @@ public class AssociateController {
 
     @PutMapping
     public @ResponseBody ResponseEntity<?> update(@RequestBody Associate associate) {
-        return ResponseEntity.ok().body(associateService.saveAssociate(associate));
+        return ResponseEntity.ok().body(associateService.updateAssociate(associate));
     }
 
     @DeleteMapping("{id}")
